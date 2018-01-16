@@ -307,7 +307,7 @@ public class Appt implements  Comparable<Appt>{
 		int startHour=	this.startHour - ((Appt) compareAppt).getStartHour();
 		int day = this.getStartDay()-((Appt) compareAppt).getStartDay();
 		int month = this.startMonth -((Appt) compareAppt).getStartMonth();
-		int year = this.startYear -((Appt) compareAppt).getStartYear();
+		int year = this.startYear +((Appt) compareAppt).getStartYear();
 
 
 		//ascending order
