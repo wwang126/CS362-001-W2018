@@ -37,6 +37,26 @@ public class TimeTableTest {
                 startYear ,
                 title,
                 description);
+        title="Appointment 1b";
+        description="Test Text 1b";
+        //Construct a new Appointment object with the initial data
+        Appt appt1b = new Appt(startHour,
+                startMinute ,
+                startDay ,
+                startMonth ,
+                startYear ,
+                title,
+                description);
+        title="Appointment 1c";
+        description="Test Text 1c";
+        //Construct a new Appointment object with the initial data
+        Appt appt1c = new Appt(startHour,
+                startMinute ,
+                startDay ,
+                startMonth ,
+                startYear ,
+                title,
+                description);
         startHour = 4;
         title = "Appointment 2";
         description = "Test Text 2";
@@ -72,9 +92,16 @@ public class TimeTableTest {
 
         //add reccurence to appt1
         int[] days = {0,1,2,4};
+        int[] empty = {};
+        int[] daysc = {1};
         appt1.setRecurrence(days,1,1,6);
+        appt1b.setRecurrence(empty,1,1,6);
+        appt1c.setRecurrence(days,1,1,6);
         apptList.add(appt1);
+        apptList.add(appt1b);
+        apptList.add(appt1c);
         apptList.add(appt2);
+        appt2.setRecurrence(days,2,1,6);
         apptList.add(appt3);
         apptList.add(appt4);
 
@@ -85,11 +112,13 @@ public class TimeTableTest {
         int thisDay = rightnow.get(Calendar.DAY_OF_MONTH);
 
         GregorianCalendar startCal = new GregorianCalendar(2018,3,2);
-        GregorianCalendar endCal = new GregorianCalendar(2018,3,29);
+        GregorianCalendar endCal = new GregorianCalendar(2018,4,10);
         LinkedList<CalDay> output = timetable.getApptRange(apptList,startCal,endCal);
         String testString = "[\t --- 3/2/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1b, Test Text 1b\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \t3/2/2018 at 1:30am ,Appointment 3, Test Text 3\n" +
                 " \t3/2/2018 at 4:30am ,Appointment 2, Test Text 2\n" +
                 " \n" +
@@ -99,6 +128,7 @@ public class TimeTableTest {
                 ", \t --- 3/4/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \n" +
                 ", \t --- 3/5/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
@@ -112,10 +142,13 @@ public class TimeTableTest {
                 ", \t --- 3/8/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \n" +
                 ", \t --- 3/9/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1b, Test Text 1b\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \n" +
                 ", \t --- 3/10/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
@@ -123,6 +156,7 @@ public class TimeTableTest {
                 ", \t --- 3/11/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \n" +
                 ", \t --- 3/12/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
@@ -136,10 +170,13 @@ public class TimeTableTest {
                 ", \t --- 3/15/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \n" +
                 ", \t --- 3/16/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1b, Test Text 1b\n" +
+                " \t3/2/2018 at 12:30am ,Appointment 1c, Test Text 1c\n" +
                 " \n" +
                 ", \t --- 3/17/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
@@ -161,7 +198,8 @@ public class TimeTableTest {
                 "\n" +
                 ", \t --- 3/23/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
-                "\n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1b, Test Text 1b\n" +
+                " \n" +
                 ", \t --- 3/24/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\n" +
@@ -175,6 +213,42 @@ public class TimeTableTest {
                 " --- -------- Appointments ------------ --- \n" +
                 "\n" +
                 ", \t --- 3/28/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/29/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/30/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1b, Test Text 1b\n" +
+                " \n" +
+                ", \t --- 4/1/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 4/2/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 4:30am ,Appointment 2, Test Text 2\n" +
+                " \n" +
+                ", \t --- 4/3/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 4/4/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 4/5/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 4/6/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 4/7/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1b, Test Text 1b\n" +
+                " \n" +
+                ", \t --- 4/8/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 4/9/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\n" +
                 "]";
@@ -322,6 +396,11 @@ public class TimeTableTest {
                 title,
                 description);
 
+        //Test empty linked list
+        //add/delete invalid appointment
+        LinkedList<Appt> output = timetable.deleteAppt(apptList,appt1);
+        assertEquals(null,output);
+
         apptList.add(appt1);
         apptList.add(appt2);
         apptList.add(appt3);
@@ -333,16 +412,25 @@ public class TimeTableTest {
         int thisYear = rightnow.get(Calendar.YEAR);
         int thisDay = rightnow.get(Calendar.DAY_OF_MONTH);
 
-        LinkedList<Appt> output = timetable.deleteAppt(apptList,appt3);
+        //test normal delete
+        output = timetable.deleteAppt(apptList,appt3);
         String testString = "[\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
                 ", \t3/2/2018 at 4:30am ,Appointment 2, Test Text 2\n" +
                 ", \t7/2/2018 at 1:30am ,Appointment 4, Test Text 4\n" +
                 "]";
         assertEquals(testString,output.toString());
+        //test double delete
+        output = timetable.deleteAppt(apptList,appt3);
+        assertEquals(null,output);
+        //test deleting not present appointment
 
         //add/delete invalid appointment
         apptList.add(appt5);
         output = timetable.deleteAppt(apptList,appt5);
+        assertEquals(null,output);
+
+        //Test null list
+        output = timetable.deleteAppt(null,appt5);
         assertEquals(null,output);
 
     }
