@@ -69,6 +69,10 @@ public class TimeTableTest {
                 startYear ,
                 title,
                 description);
+
+        //add reccurence to appt1
+        int[] days = {0,1,2,4};
+        appt1.setRecurrence(days,1,1,6);
         apptList.add(appt1);
         apptList.add(appt2);
         apptList.add(appt3);
@@ -81,7 +85,7 @@ public class TimeTableTest {
         int thisDay = rightnow.get(Calendar.DAY_OF_MONTH);
 
         GregorianCalendar startCal = new GregorianCalendar(2018,3,2);
-        GregorianCalendar endCal = new GregorianCalendar(2018,3,5);
+        GregorianCalendar endCal = new GregorianCalendar(2018,3,29);
         LinkedList<CalDay> output = timetable.getApptRange(apptList,startCal,endCal);
         String testString = "[\t --- 3/2/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
@@ -93,6 +97,84 @@ public class TimeTableTest {
                 " --- -------- Appointments ------------ --- \n" +
                 "\n" +
                 ", \t --- 3/4/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \n" +
+                ", \t --- 3/5/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/6/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/7/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/8/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \n" +
+                ", \t --- 3/9/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \n" +
+                ", \t --- 3/10/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/11/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \n" +
+                ", \t --- 3/12/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/13/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/14/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/15/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \n" +
+                ", \t --- 3/16/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
+                " \n" +
+                ", \t --- 3/17/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/18/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/19/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/20/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/21/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/22/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/23/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/24/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/25/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/26/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/27/2018 --- \n" +
+                " --- -------- Appointments ------------ --- \n" +
+                "\n" +
+                ", \t --- 3/28/2018 --- \n" +
                 " --- -------- Appointments ------------ --- \n" +
                 "\n" +
                 "]";
@@ -247,5 +329,4 @@ public class TimeTableTest {
         assertEquals(testString,output.toString());
 
     }
-//add more unit tests as you needed
 }
