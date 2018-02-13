@@ -310,6 +310,18 @@ public class TimeTableTest {
                 startYear ,
                 title,
                 description);
+        startHour = -1;
+        startMonth = 7;
+        title = "Appointment 4";
+        description = "Test Text 4";
+        Appt appt5 = new Appt(startHour,
+                startMinute ,
+                startDay ,
+                startMonth ,
+                startYear ,
+                title,
+                description);
+
         apptList.add(appt1);
         apptList.add(appt2);
         apptList.add(appt3);
@@ -327,6 +339,11 @@ public class TimeTableTest {
                 ", \t7/2/2018 at 1:30am ,Appointment 4, Test Text 4\n" +
                 "]";
         assertEquals(testString,output.toString());
+
+        //add/delete invalid appointment
+        apptList.add(appt5);
+        output = timetable.deleteAppt(apptList,appt5);
+        assertEquals(null,output);
 
     }
 }
