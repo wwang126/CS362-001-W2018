@@ -264,6 +264,9 @@ public class ApptTest {
 				description);
 		//Check initial validity
 		assertFalse(appt.isRecurring());
+		//Check initial setting of values
+		assertEquals(0, appt.getRecurNumber());
+		assertEquals(0, appt.getRecurIncrement());
 
 		int[] days = {1,2};
 
@@ -306,10 +309,24 @@ public class ApptTest {
 		//Check initial validity
 		String output = "\t1/15/2018 at 12:30am ,Birthday Party, This is my birthday party.\n";
 		assertEquals(output, appt.toString());
+
 		appt.setStartHour(24);
 		assertEquals(null,appt.toString());
+
 		appt.setStartHour(12);
 		output = "\t1/15/2018 at 12:30pm ,Birthday Party, This is my birthday party.\n";
+		assertEquals(output,appt.toString());
+
+		appt.setStartHour(22);
+		output = "\t1/15/2018 at 10:30pm ,Birthday Party, This is my birthday party.\n";
+		assertEquals(output,appt.toString());
+
+		appt.setStartHour(1);
+		output = "\t1/15/2018 at 1:30am ,Birthday Party, This is my birthday party.\n";
+		assertEquals(output,appt.toString());
+
+		appt.setStartHour(11);
+		output = "\t1/15/2018 at 11:30am ,Birthday Party, This is my birthday party.\n";
 		assertEquals(output,appt.toString());
 	}
 	@Test
@@ -348,6 +365,19 @@ public class ApptTest {
 		//Test Comparator
 		assertEquals(0,appt1.compareTo(appt2));
 		assertEquals(-1,appt2.compareTo(appt3));
+		//Test minute
+		appt2.setStartMinute(29);
+		assertEquals(1,appt1.compareTo(appt2));
+		//Test hour
+		appt2.setStartHour(1);
+		assertEquals(0,appt1.compareTo(appt2));
+		//Test day
+		appt2.setStartDay(14);
+		assertEquals(1,appt1.compareTo(appt2));
+		//Test month
+		appt2.setStartMonth(2);
+		assertEquals(0,appt1.compareTo(appt2));
+
 	 }
 
 	
