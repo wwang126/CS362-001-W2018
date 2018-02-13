@@ -80,21 +80,56 @@ public class CalDayTest {
 				startYear ,
 				title,
 				description);
+		startHour = 1;
+		startMinute = 29;
+		title = "Appointment 4";
+		description = "Test Text 4";
+		Appt appt4 = new Appt(startHour,
+				startMinute ,
+				startDay ,
+				startMonth ,
+				startYear ,
+				title,
+				description);
+		startHour = 4;
+		startMinute = 29;
+		title = "Appointment 5";
+		description = "Test Text 5";
+		Appt appt5 = new Appt(startHour,
+				startMinute ,
+				startDay ,
+				startMonth ,
+				startYear ,
+				title,
+				description);
 		calday.addAppt(appt1);
+		calday.addAppt(appt5);
 		calday.addAppt(appt2);
 		calday.addAppt(appt3);
+		calday.addAppt(appt4);
+		//Doesn't order by minute, only hour.
 		String output = "\t --- 2/2/2018 --- \n" +
 				" --- -------- Appointments ------------ --- \n" +
 				"\t3/2/2018 at 12:30am ,Appointment 1, Test Text 1\n" +
 				" \t3/2/2018 at 1:30am ,Appointment 3, Test Text 3\n" +
-				" \t3/2/2018 at 4:30am ,Appointment 2, Test Text 2\n \n";
+				" \t3/2/2018 at 1:29am ,Appointment 4, Test Text 4\n" +
+				" \t3/2/2018 at 4:29am ,Appointment 5, Test Text 5\n" +
+				" \t3/2/2018 at 4:30am ,Appointment 2, Test Text 2\n" +
+				" \n";
 		assertEquals(output,calday.toString());
-		assertEquals(3,calday.getSizeAppts());
+		assertEquals(5,calday.getSizeAppts());
 	}
 	@Test
 	public void testIterator()  throws Throwable  {
 		CalDay test = new CalDay();
 		assertEquals(null, test.iterator());
+		//Generate Day Valid Day
+		Calendar curr = Calendar.getInstance();
+		GregorianCalendar cal = new GregorianCalendar(2018,2,2);
+		test = new CalDay(cal);
+		assertEquals(true, test.isValid());
+		//Check if it creates a non null iterator when calday is valid
+		assertFalse(test.iterator().equals(null));
 	}
 //add more unit tests as you needed	
 }
