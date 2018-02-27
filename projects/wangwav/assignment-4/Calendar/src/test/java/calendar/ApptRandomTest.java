@@ -57,7 +57,7 @@ public class ApptRandomTest {
          long elapsed = Calendar.getInstance().getTimeInMillis() - startTime;
 
 
-         System.out.println("Start testing...");
+         System.out.println("Start testing setRecurDays()...");
 
         try{
             for (int iteration = 0; elapsed < TestTimeout; iteration++) {
@@ -116,7 +116,7 @@ public class ApptRandomTest {
         long elapsed = Calendar.getInstance().getTimeInMillis() - startTime;
 
 
-        System.out.println("Start testing...");
+        System.out.println("Start testing isValid()...");
 
         try{
             for (int iteration = 0; elapsed < TestTimeout; iteration++) {
