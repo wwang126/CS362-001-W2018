@@ -90,6 +90,7 @@ public class ApptRandomTest {
                        else if (methodName.equals("setRecurrence")){
                            int sizeArray=ValuesGenerator.getRandomIntBetween(random, 0, 8);
                            int[] recurDays=ValuesGenerator.generateRandomArray(random, sizeArray);
+                           if(recurDays.length == 0)recurDays = null;//Null out array if zero
                            int recur=ApptRandomTest.RandomSelectRecur(random);
                            int recurIncrement = ValuesGenerator.RandInt(random);
                            int recurNumber=ApptRandomTest.RandomSelectRecurForEverNever(random);
