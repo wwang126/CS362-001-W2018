@@ -1,0 +1,5 @@
+Two Bugs found - 
+
+1. The first bug that I found was the Cal Day constructor bug. This bug caused my testAppts test to fail since I check if the calday is valid right after construction. Since the bug causes the constructor to not set cal day to valid the assertion automatically fails. This bug also causes testIterator and testConstructor to fail since I also check that the newly created Calday objects are considered valid. Since they aren't set as valid in the constructor, they fail all asserts and thus the tests.
+
+2. The second bug that I found was with the appt range. Because the recur settings were changed by the bug the assertion was failing as the TimeTable class was no longer properly selecting the proper appointments and instead outputting completely empty strings.
