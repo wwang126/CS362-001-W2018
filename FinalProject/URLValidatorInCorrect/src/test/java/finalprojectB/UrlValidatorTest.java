@@ -2,6 +2,7 @@
 package finalprojectB;
 
 import junit.framework.TestCase;
+import java.util.Random;
 
 //You can use this as a skeleton for your 3 different test approach
 //It is an optional to use this file, you can generate your own test file(s) to test the target function!
@@ -99,12 +100,36 @@ public class UrlValidatorTest extends TestCase {
 
    }
    //You need to create more test cases for your Partitions if you need to 
-   
-   public void testIsValid()
-   {
-	   //You can use this function for programming based testing
 
-   }
+    /**
+     * Ip Tester
+     * This program generates various IP addresses and tests to see if
+     * they're valid.
+     */
+    public void testIPisValid() {
+        System.out.println(" -------- Testing Random IP URLs -------- ");
+        for(int j = 0; j <50; j++) {
+            String ip = "http://";
+            Random rand = new Random();
+            Boolean result = true;
+            int ipSection = rand.nextInt(300) + 1;
+            if (ipSection > 255) {
+                result = false;
+            }
+            for (int i = 0; i < 3; i++) {
+                ip += ipSection + ".";
+                ipSection = rand.nextInt(300) + 1;
+                if (ipSection > 255) {
+                    result = false;
+                }
+            }
+            ip += ipSection;
+            UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+            boolean output = urlTest.isValid(ip);
+            System.out.println("Tested " + ip + " as " + output + " expected " + result);
+            assertTrue(result == output);
+        }
+    }
    
 
 
