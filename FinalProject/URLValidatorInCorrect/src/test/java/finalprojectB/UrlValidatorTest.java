@@ -20,10 +20,71 @@ public class UrlValidatorTest extends TestCase {
 
    
    
-   public void testManualTest()
-   {
-//You can use this function to implement your manual testing	   
-	   
+   public void testManualTest(){
+       UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+       String testString = "http://www.google.com";
+       boolean result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+       //True Tests
+       testString = "http://www.google.com:80/test1?action=view";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "ftp://0.0.0.0:0?action=edit&mode=up";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "h3t://go.au:80/test1";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "h3t://go.tv:80/test1";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "h3t://go.se:80/test1";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "ftp://google.com";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "http://ww.google.com";
+       result = urlTest.isValid(testString);
+       assertEquals(true,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       //False Tests
+       testString = "http:/www.google.com";
+       result = urlTest.isValid(testString);
+       assertEquals(false,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       //Test invalid ip address
+       testString = "ftp://300.300.300.300:0";
+       result = urlTest.isValid(testString);
+       assertEquals(false,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "www.google.com";
+       result = urlTest.isValid(testString);
+       assertEquals(false,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+       testString = "www.google.com";
+       result = urlTest.isValid(testString);
+       assertEquals(false,result);
+       System.out.println("Passed " + testString + " as " + result);
+
+
    }
    
    
