@@ -20,10 +20,10 @@ public class UrlValidatorTest extends TestCase {
 
    
    
-   public void testManualTest()
-   {
-//You can use this function to implement your manual testing	   
-	   
+   public void testManualTest(){
+       UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+       boolean result = urlTest.isValid("www.google.com");
+       assertTrue(result);
    }
    
    
