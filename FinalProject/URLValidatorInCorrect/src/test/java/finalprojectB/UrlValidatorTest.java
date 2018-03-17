@@ -68,7 +68,8 @@ public class UrlValidatorTest extends TestCase {
        assertEquals(false,result);
        System.out.println("Passed " + testString + " as " + result);
 
-       testString = "ft:/www.google.com";
+       //Test invalid ip address
+       testString = "ftp://300.300.300.300:0";
        result = urlTest.isValid(testString);
        assertEquals(false,result);
        System.out.println("Passed " + testString + " as " + result);
@@ -82,7 +83,6 @@ public class UrlValidatorTest extends TestCase {
        result = urlTest.isValid(testString);
        assertEquals(false,result);
        System.out.println("Passed " + testString + " as " + result);
-
 
 
    }
