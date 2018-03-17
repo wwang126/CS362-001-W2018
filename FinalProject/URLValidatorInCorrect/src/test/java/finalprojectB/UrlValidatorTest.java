@@ -22,8 +22,16 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest(){
        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
-       boolean result = urlTest.isValid("www.google.com");
-       assertTrue(result);
+       boolean result = urlTest.isValid("http://www.google.com");
+       assertEquals(true,result);
+//       result = urlTest.isValid("www.mail.google.com");
+//       assertEquals(true,result);
+//       result = urlTest.isValid("www.mail.google.com");
+//       result = urlTest.isValid("www.mail.google.com");
+//       result = urlTest.isValid("www.mail.google.com");
+//       result = urlTest.isValid("www.mail.google.com");
+
+
    }
    
    
