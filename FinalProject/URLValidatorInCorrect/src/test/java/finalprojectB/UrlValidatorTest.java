@@ -90,7 +90,7 @@ public class UrlValidatorTest extends TestCase {
    }
 
 
-
+    @Test
     public void testURLScheme() {
         UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
         String testString = "http://www.google.com";
@@ -104,6 +104,7 @@ public class UrlValidatorTest extends TestCase {
         System.out.println("Passed " + testString + " as " + result);
     }
 
+    @Test
     public void testURLAuthority(){
         UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
         String testString = "http://www.google.com";
@@ -117,6 +118,7 @@ public class UrlValidatorTest extends TestCase {
         System.out.println("Passed " + testString + " as " + result);
     }
 
+    @Test
     public void testURLPort(){
         UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
         String testString = "http://www.google.com:80";
@@ -130,6 +132,7 @@ public class UrlValidatorTest extends TestCase {
         System.out.println("Passed " + testString + " as " + result);
     }
 
+    @Test
     public void testURLPath(){
         UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
         String testString = "http://www.google.com/test1";
@@ -143,6 +146,7 @@ public class UrlValidatorTest extends TestCase {
         System.out.println("Passed " + testString + " as " + result);
     }
 
+    @Test
     public void testURLQuery(){
         UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
         String testString = "http://www.google.com/?action=view";
@@ -155,10 +159,6 @@ public class UrlValidatorTest extends TestCase {
         assertEquals(false,result);
         System.out.println("Passed " + testString + " as " + result);
     }
-   
-   public void testIsValid()
-   {
-	   //You can use this function for programming based testing
 
 
     /**
@@ -166,6 +166,7 @@ public class UrlValidatorTest extends TestCase {
      * This program generates various IP addresses and tests to see if
      * they're valid.
      */
+    @Test
     public void testIPisValid() {
         System.out.println(" -------- Testing Random IP URLs -------- ");
         for(int j = 0; j <50; j++) {
