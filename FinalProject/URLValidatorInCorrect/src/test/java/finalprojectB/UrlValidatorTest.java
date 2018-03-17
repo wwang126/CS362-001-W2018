@@ -2,7 +2,10 @@
 package finalprojectB;
 
 import junit.framework.TestCase;
+
 import java.util.Random;
+import org.junit.Test;
+
 
 //You can use this as a skeleton for your 3 different test approach
 //It is an optional to use this file, you can generate your own test file(s) to test the target function!
@@ -20,7 +23,7 @@ public class UrlValidatorTest extends TestCase {
    }
 
    
-   
+   @Test
    public void testManualTest(){
        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
        String testString = "http://www.google.com";
@@ -84,22 +87,79 @@ public class UrlValidatorTest extends TestCase {
        result = urlTest.isValid(testString);
        assertEquals(false,result);
        System.out.println("Passed " + testString + " as " + result);
-
-
    }
+
+
+
+    public void testURLScheme() {
+        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+        String testString = "http://www.google.com";
+        boolean result = urlTest.isValid(testString);
+        assertEquals(true,result);
+        System.out.println("Passed " + testString + " as " + result);
+
+        testString = "wat://www.google.com";
+        result = urlTest.isValid(testString);
+        assertEquals(false,result);
+        System.out.println("Passed " + testString + " as " + result);
+    }
+
+    public void testURLAuthority(){
+        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+        String testString = "http://www.google.com";
+        boolean result = urlTest.isValid(testString);
+        assertEquals(true,result);
+        System.out.println("Passed " + testString + " as " + result);
+
+        testString = "http://1.2.3";
+        result = urlTest.isValid(testString);
+        assertEquals(false,result);
+        System.out.println("Passed " + testString + " as " + result);
+    }
+
+    public void testURLPort(){
+        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+        String testString = "http://www.google.com:80";
+        boolean result = urlTest.isValid(testString);
+        assertEquals(true,result);
+        System.out.println("Passed " + testString + " as " + result);
+
+        testString = "http://www.google.com:65a";
+        result = urlTest.isValid(testString);
+        assertEquals(false,result);
+        System.out.println("Passed " + testString + " as " + result);
+    }
+
+    public void testURLPath(){
+        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+        String testString = "http://www.google.com/test1";
+        boolean result = urlTest.isValid(testString);
+        assertEquals(true,result);
+        System.out.println("Passed " + testString + " as " + result);
+
+        testString = "http://www.google.com/../";
+        result = urlTest.isValid(testString);
+        assertEquals(false,result);
+        System.out.println("Passed " + testString + " as " + result);
+    }
+
+    public void testURLQuery(){
+        UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+        String testString = "http://www.google.com/?action=view";
+        boolean result = urlTest.isValid(testString);
+        assertEquals(true,result);
+        System.out.println("Passed " + testString + " as " + result);
+
+        testString = "http://www.google.com/?action=thisshouldfail";
+        result = urlTest.isValid(testString);
+        assertEquals(false,result);
+        System.out.println("Passed " + testString + " as " + result);
+    }
    
-   
-   public void testYourFirstPartition()
+   public void testIsValid()
    {
-	 //You can use this function to implement your First Partition testing	   
+	   //You can use this function for programming based testing
 
-   }
-   
-   public void testYourSecondPartition(){
-		 //You can use this function to implement your Second Partition testing	   
-
-   }
-   //You need to create more test cases for your Partitions if you need to 
 
     /**
      * Ip Tester
