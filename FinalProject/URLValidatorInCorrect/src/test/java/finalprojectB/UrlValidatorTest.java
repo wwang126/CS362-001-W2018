@@ -191,7 +191,66 @@ public class UrlValidatorTest extends TestCase {
             assertTrue(result == output);
         }
     }
-   
+    /**
+     * Automated URL Tester
+     * This generates and tests urls from a given index of urls
+     */
+    @Test
+    public void genTestUrlIsValid(){
+
+    }
+
+    /**
+     * Various url schema, anything after index 3 should evaluate as false
+     */
+    String[] schemes = {
+            "http://",
+            "ftp://",
+            "https://",
+            "h3t://",
+            "http:/",
+            "ftp:/",
+            "https:/",
+            "h3t:/"
+    };
+    /**
+     * Various domains, anything after index 3 should evaluate to false
+     */
+    String[] domains = {
+            "www.google.com",
+            "www.google.co.uk",
+            "www.google.gov",
+            "www.google.edu",
+            "www.google.aaa",
+            "www.google.1bb",
+            "www.google",
+            "google.",
+            ".com"
+    };
+    /**
+     * Various ports, anything after index 3 should evaluate to false
+     */
+    String[] ports = {
+            ":65535",
+            ":0",
+            "",
+            ":888",
+            ":-5",
+            ":70000",
+            ":dda7"
+    };
+    /**
+     * Various Paths to attach to url, anything after index 3 should eval to false
+     */
+    String[] paths = {
+            "/testa",
+            "/test1",
+            "/%20",
+            "/-20",
+            "/..",
+            ".."
+    };
+
 
 
 }
