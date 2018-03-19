@@ -195,8 +195,30 @@ public class UrlValidatorTest extends TestCase {
      * Automated URL Tester
      * This generates and tests urls from a given index of urls
      */
-    @Test
-    public void genTestUrlIsValid(){
+    public void testGenUrlIsValid(){
+        for(int s = 0; s < 8; s++){
+            String scheme = schemes[s];
+            Boolean result = true;
+            if(s > 3){
+                result = false;
+            }
+            for(int d = 0; d < 8; d++){
+                String domain = domains[d];
+                for(int p = 0; p < 6; p++){
+                    String path = paths[p];
+                    if (p > 3 || d > 3 || s > 3) {
+                        result = false;
+                    }
+                    String url = scheme + domain + path;
+                    UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+                    boolean output = urlTest.isValid(url);
+                    System.out.println("Tested " + url + " as " + output + " expected " + result);
+                    assertTrue(result == output);
+                    result = true;
+
+                }
+            }
+        }
 
     }
 
@@ -221,23 +243,10 @@ public class UrlValidatorTest extends TestCase {
             "www.google.co.uk",
             "www.google.gov",
             "www.google.edu",
-            "www.google.aaa",
             "www.google.1bb",
-            "www.google",
+            "",
             "google.",
             ".com"
-    };
-    /**
-     * Various ports, anything after index 3 should evaluate to false
-     */
-    String[] ports = {
-            ":65535",
-            ":0",
-            "",
-            ":888",
-            ":-5",
-            ":70000",
-            ":dda7"
     };
     /**
      * Various Paths to attach to url, anything after index 3 should eval to false
@@ -250,7 +259,5 @@ public class UrlValidatorTest extends TestCase {
             "/..",
             ".."
     };
-
-
 
 }
