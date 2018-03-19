@@ -191,7 +191,73 @@ public class UrlValidatorTest extends TestCase {
             assertTrue(result == output);
         }
     }
-   
+    /**
+     * Automated URL Tester
+     * This generates and tests urls from a given index of urls
+     */
+    public void testGenUrlIsValid(){
+        for(int s = 0; s < 8; s++){
+            String scheme = schemes[s];
+            Boolean result = true;
+            if(s > 3){
+                result = false;
+            }
+            for(int d = 0; d < 8; d++){
+                String domain = domains[d];
+                for(int p = 0; p < 6; p++){
+                    String path = paths[p];
+                    if (p > 3 || d > 3 || s > 3) {
+                        result = false;
+                    }
+                    String url = scheme + domain + path;
+                    UrlValidator urlTest = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+                    boolean output = urlTest.isValid(url);
+                    System.out.println("Tested " + url + " as " + output + " expected " + result);
+                    assertTrue(result == output);
+                    result = true;
 
+                }
+            }
+        }
+
+    }
+
+    /**
+     * Various url schema, anything after index 3 should evaluate as false
+     */
+    String[] schemes = {
+            "http://",
+            "ftp://",
+            "https://",
+            "h3t://",
+            "http:/",
+            "ftp:/",
+            "https:/",
+            "h3t:/"
+    };
+    /**
+     * Various domains, anything after index 3 should evaluate to false
+     */
+    String[] domains = {
+            "www.google.com",
+            "www.google.co.uk",
+            "www.google.gov",
+            "www.google.edu",
+            "www.google.1bb",
+            "",
+            "google.",
+            ".com"
+    };
+    /**
+     * Various Paths to attach to url, anything after index 3 should eval to false
+     */
+    String[] paths = {
+            "/testa",
+            "/test1",
+            "/%20",
+            "/-20",
+            "/..",
+            ".."
+    };
 
 }
